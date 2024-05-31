@@ -17,5 +17,5 @@ def test_dynamic_steps():
     with allure.step("Открываем таб Issues"):
         s("#issues-tab").click()
 
-    with allure.step("Проверяем наличие Issue с номером 76"):
-        s(by.partial_text("#76")).should(be.visible)
+    with allure.step("Проверяем наличие Issue с названием 'Another test issue'"):
+        s(by.partial_text("Another test issue")).should(be.visible)
