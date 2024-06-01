@@ -8,7 +8,7 @@ def test_decorator_steps():
     search_for_repository("eroshenkoam/allure-example")
     go_to_repository("eroshenkoam/allure-example")
     open_issue_tab()
-    should_see_issue_with_name("Another test issue")
+    should_see_issue_with_name("Another tests issue")
 
 
 @allure.step("Открываем главную страницу")
@@ -32,6 +32,6 @@ def open_issue_tab():
     s("#issues-tab").click()
 
 
-@allure.step("Проверяем наличие Issue с названием 'Another test issue'")
+@allure.step("Проверяем наличие Issue с названием 'Another tests issue'")
 def should_see_issue_with_name(name):
     s(by.partial_text(name)).click()

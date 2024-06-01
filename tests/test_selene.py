@@ -12,4 +12,4 @@ def test_github():
 
     s("#issues-tab").click()
 
-    s(by.partial_text("Another test issue")).should(be.visible)
+    s(by.partial_text("Another tests issue")).should(be.visible)
