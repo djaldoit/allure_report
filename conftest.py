@@ -1,22 +1,20 @@
 import os
-from utils import attachments
-
 
 import pytest
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selene import browser, Browser, Config
-from dotenv import load_dotenv
 
+from dotenv import load_dotenv
+from selene.support.shared import browser
+from selenium.webdriver.chrome.options import Options
+
+from utils import attachments
 
 DEFAULT_BROWSER_VERSION = "100.0"
 
 
 def pytest_addoption(parser):
     parser.addoption(
-        '--browser_version',
-        default='100.0'
-    )
+        '--browser_version', default='100.0')
 
 
 @pytest.fixture(scope='session', autouse=True)
@@ -24,14 +22,7 @@ def load_env():
     load_dotenv()
 
 
-@pytest.fixture(scope='function', autouse=True)
-def browser_management():
-    browser.config.base_url = 'https://github.com'
-    browser.config.window_width = 1920
-    browser.config.window_height = 1080
-
-
-@pytest.fixture(scope='function', autouse=True)
+@pytest.fixture(scope='function',  autouse=True)
 def setup_browser(request):
     browser_version = request.config.getoption('--browser_version')
     browser_version = browser_version if browser_version != "" else DEFAULT_BROWSER_VERSION
@@ -44,6 +35,7 @@ def setup_browser(request):
             "enableVideo": True
         }
     }
+
     options.capabilities.update(selenoid_capabilities)
 
     login = os.getenv('LOGIN')
@@ -54,7 +46,9 @@ def setup_browser(request):
         options=options
     )
 
-    browser = Browser(Config(driver))
+    browser.config.driver = driver
+
+    browser.config.base_url = 'https://github.com'
 
     yield browser
 

@@ -8,7 +8,7 @@ def test_decorator_steps():
     search_for_repository("eroshenkoam/allure-example")
     go_to_repository("eroshenkoam/allure-example")
     open_issue_tab()
-    should_see_issue_with_name("Another tests issue")
+    should_see_issue_with_name("Issue for HW qa.guru")
 
 
 @allure.step("Открываем главную страницу")
