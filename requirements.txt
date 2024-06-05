@@ -1,3 +1,4 @@
-pytest
-allure-pytest
-selene >= 2.0.b4
+pytest>=8.2.2
+allure-pytest>=2.13.5
+selene==2.0.0rc9
+python-dotenv>=1.0.1
